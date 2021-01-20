@@ -1,0 +1,30 @@
+.chat-window {
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+    background: #F9FBFF;
+    border: 1px solid #1B3A5933;
+    height: 100vh;
+    border-top: none;
+    position: relative;
+}
+
+.icons {
+    margin: 0 10px;
+    opacity: 0.25;
+    font-size: 20px;
+}
+
+.name-letter {
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: bold;
+    height: 40px;
+    width: 40px;
+    border-radius: 24px;
+    margin-right: 8px;
+    background: #007AF4;
+}
