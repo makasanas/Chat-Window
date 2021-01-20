@@ -16,11 +16,13 @@ const ChatBox: FunctionComponent<ChatBoxComponentProps> = (props) => {
         setValue(value)
     }
 
+    const handleKeyDown = (e:any) => {
+        if (e.key === 'Enter') {
+          clickSend();
+        }
+      }
+
     const clickSend = () => {
-
-        console.log(Math.floor((1 + Math.random()) * 0x1000000))
-        console.log(Date.now())
-
         const data: Message = {
             id: Math.floor((1 + Math.random()) * 0x1000000),
             messageText: value,
@@ -34,7 +36,7 @@ const ChatBox: FunctionComponent<ChatBoxComponentProps> = (props) => {
 
     return (
         <div className="chat-header chat-box">
-            <input className='chat-input' placeholder='Write Somthing...' value={value} onChange={(e) => handleChange(e.target.value)} />
+            <input className='chat-input' placeholder='Write Somthing...' value={value} onKeyDown={handleKeyDown} onChange={(e) => handleChange(e.target.value)} />
             <div className="chat-actions">
                 <div className='search-item'>
                     <div className='icons'><i className="ri-emotion-happy-line"></i></div>
