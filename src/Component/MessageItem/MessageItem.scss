@@ -15,7 +15,9 @@
         position: relative;
         min-width: 180px;
         font-size: 14px;
-
+        &.search{
+            background: #FFEB3B;
+        }
         .message-time {
             position: absolute;
             bottom: 10px;

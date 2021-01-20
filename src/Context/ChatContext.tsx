@@ -42,7 +42,8 @@ export interface Message {
     type: 'send' | 'receive';
     timestamp: number;
     repliedId?: number;
-    readType?: 'delivered' | 'read'
+    readType?: 'delivered' | 'read';
+    search?: boolean
 }
 
 export interface ContactInfo {
@@ -59,7 +60,7 @@ export interface ChatContextState {
 export interface ChatContextValue {
     chatContextState: ChatContextState;
     sendMessage: (data: Message) => void;
-
+    searchMessage: (search: string) => void;
 }
 
 const initialState: ChatContextState = {
@@ -70,6 +71,7 @@ const initialState: ChatContextState = {
 const initialChatContextValue: ChatContextValue = {
     chatContextState: initialState,
     sendMessage: () => { },
+    searchMessage: () => { },
 };
 
 const actions = {
@@ -95,12 +97,30 @@ const ChatContextProvider: FunctionComponent = ({ children }) => {
 
     const value = {
         chatContextState: state,
-
         sendMessage: async (data: Message) => {
-
             let contactData: ContactInfo = state.contactInfo;
-
             contactData.messages.push(data)
+            dispatch({
+                type: actions.MESSAGE_SEND,
+                payload: contactData,
+            });
+        },
+        searchMessage: async (search:string ) => {
+            let contactData: ContactInfo = state.contactInfo;
+            search = search.trim();
+            if(search){
+                contactData.messages.forEach((message:Message)=>{
+                    if(message.messageText.includes(search)){
+                        message.search = true;  
+                    }else{
+                        message.search = false;  
+                    };
+                });
+            }else{
+                contactData.messages.forEach((message:Message)=>{
+                    message.search = false;  
+                });
+            }
 
             dispatch({
                 type: actions.MESSAGE_SEND,

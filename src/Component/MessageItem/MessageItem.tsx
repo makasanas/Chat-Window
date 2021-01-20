@@ -33,9 +33,9 @@ const MessageItem: FunctionComponent<MessageItemComponentProps> = (props) => {
     }
 
     return (
-        <div className={props.message.type === 'send' ? "message-info send" : "message-info"}>
+        <div className={props.message.type === 'send' ? "message-info send" : "message-info"}    >
             {props.message.type === 'receive' && <div className="name-letter">SM</div>}
-            <div className='message-text'>
+            <div className={props.message.search ? "message-text search" : "message-text"} >
                 {repliedMessage &&
                     <div className='replied-info'>
                         <p className='name'>Sanjay Makasana</p>

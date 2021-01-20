@@ -16,7 +16,7 @@ const ChatBox: FunctionComponent<ChatBoxComponentProps> = (props) => {
         setValue(value)
     }
 
-    const handleKeyDown = (e:any) => {
+    const handleKeyDown = (e:React.KeyboardEvent<HTMLDivElement>) => {
         if (e.key === 'Enter') {
           clickSend();
         }

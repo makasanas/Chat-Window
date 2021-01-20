@@ -1,16 +1,18 @@
-import React, { FunctionComponent, useState } from 'react';
-
+import React, { FunctionComponent,useContext, useState } from 'react';
+import { ChatContext } from '../../Context/ChatContext';
 import './ChatHeader.scss'
 
 interface ChatHeaderComponentProps { }
 
 const ChatHeader: FunctionComponent<ChatHeaderComponentProps> = (props) => {
+    const { searchMessage } = useContext(ChatContext);
 
     const [isSearch, setIsSearch] = useState<boolean>(false)
     const [value, setValue] = useState<string>('')
 
     const handleChange = (value: string) => {
-        setValue(value)
+        setValue(value);
+        searchMessage(value);
     }
 
     const toggleSearch = () => {
